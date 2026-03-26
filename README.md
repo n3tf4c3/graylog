@@ -122,7 +122,7 @@ Todas bindadas em `127.0.0.1`.
 
 - `9000/tcp`: Graylog UI/API
 - `5044/tcp`: Beats
-- `5140/tcp` e `5140/udp`: Syslog
+- `1514/tcp` e `1514/udp`: Syslog
 - `5555/tcp` e `5555/udp`: RAW
 - `12201/tcp` e `12201/udp`: GELF
 - `13301/tcp` e `13302/tcp`: Forwarder
