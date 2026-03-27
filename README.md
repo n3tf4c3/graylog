@@ -46,7 +46,7 @@ Este projeto sobe um stack completo do Graylog para uso local, com:
 
 ## Variaveis de ambiente (.env)
 
-Obrigatorias:
+Obrigatórias:
 
 - `GRAYLOG_PASSWORD_SECRET`
 - `GRAYLOG_ROOT_PASSWORD_SHA2`
