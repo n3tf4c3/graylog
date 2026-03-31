@@ -13,6 +13,7 @@ services:
       GRAYLOG_DATANODE_NODE_ID_FILE: "/var/lib/graylog-datanode/node-id"
       GRAYLOG_DATANODE_PASSWORD_SECRET: "${GRAYLOG_PASSWORD_SECRET:?Please configure GRAYLOG_PASSWORD_SECRET in the .env file}"
       GRAYLOG_DATANODE_MONGODB_URI: "mongodb://mongodb:27017/graylog"
+      GRAYLOG_DATANODE_OPENSEARCH_HEAP: "3g"
     ulimits:
       memlock:
         hard: -1
@@ -41,12 +42,14 @@ services:
       GRAYLOG_NODE_ID_FILE: "/usr/share/graylog/data/data/node-id"
       GRAYLOG_PASSWORD_SECRET: "${GRAYLOG_PASSWORD_SECRET:?Please configure GRAYLOG_PASSWORD_SECRET in the .env file}"
       GRAYLOG_ROOT_PASSWORD_SHA2: "${GRAYLOG_ROOT_PASSWORD_SHA2:?Please configure GRAYLOG_ROOT_PASSWORD_SHA2 in the .env file}"
+      GRAYLOG_ROOT_TIMEZONE: "America/Cuiaba"
+      TZ: "America/Cuiaba"
       GRAYLOG_HTTP_BIND_ADDRESS: "0.0.0.0:9000"
       GRAYLOG_HTTP_EXTERNAL_URI: "${GRAYLOG_HTTP_EXTERNAL_URI:-http://localhost:9000/}"
       GRAYLOG_MONGODB_URI: "mongodb://mongodb:27017/graylog"
     ports:
       - "127.0.0.1:5044:5044/tcp" # Beats
-      - "127.0.0.1:1514:1514/udp" # Syslog
+      - "0.0.0.0:1514:1514/udp" # Syslog
       - "127.0.0.1:1514:1514/tcp" # Syslog
       - "127.0.0.1:5555:5555/tcp" # RAW TCP
       - "127.0.0.1:5555:5555/udp" # RAW UDP
@@ -58,6 +61,9 @@ services:
     volumes:
       - "graylog_data:/usr/share/graylog/data/data"
       - "graylog_journal:/usr/share/graylog/data/journal"
+    networks:
+      - default
+      - observability_net
     restart: "on-failure"
 
 volumes:
@@ -66,3 +72,7 @@ volumes:
   graylog-datanode:
   graylog_data:
   graylog_journal:
+
+networks:
+  observability_net:
+    external: true
