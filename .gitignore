@@ -1,3 +1,48 @@
+# Environment files (keep templates versioned)
 .env
-.env.backup-*
-.txt
+.env.*
+!.env.example
+!.env.template
+
+# TLS/certificate artifacts
+certs/
+ssl/
+tls/
+keys/
+secrets/
+secret/
+.secrets/
+private/
+
+# Certificates and key material
+*.crt
+*.cer
+*.csr
+*.der
+*.key
+*.pem
+*.p12
+*.pfx
+*.pkcs12
+*.jks
+*.keystore
+*.kdb
+*.kdbx
+
+# Secret-like files
+*.secret
+*.secrets
+*.asc
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+
+# Local backup/temp files
+*.bak
+*.old
+*.orig
+*.tmp
+
+# Local scratch file kept out of VCS
+/.txt

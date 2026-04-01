@@ -51,6 +51,7 @@ services:
       - "127.0.0.1:5044:5044/tcp" # Beats
       - "0.0.0.0:1514:1514/udp" # Syslog
       - "127.0.0.1:1514:1514/tcp" # Syslog
+      - "0.0.0.0:9514:9514/tcp" # Syslog TLS
       - "127.0.0.1:5555:5555/tcp" # RAW TCP
       - "127.0.0.1:5555:5555/udp" # RAW UDP
       - "127.0.0.1:9000:9000/tcp" # Graylog API/UI
@@ -59,6 +60,7 @@ services:
       - "127.0.0.1:13301:13301/tcp" # Forwarder data
       - "127.0.0.1:13302:13302/tcp" # Forwarder config
     volumes:
+      - "./certs:/etc/graylog/certs:ro"
       - "graylog_data:/usr/share/graylog/data/data"
       - "graylog_journal:/usr/share/graylog/data/journal"
     networks:
